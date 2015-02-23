@@ -1,4 +1,4 @@
-﻿Build started 2/22/2015 12:07:34 PM.
+﻿Build started 2/23/2015 10:40:06 AM.
      1>Project "C:\Users\haruiz\Documents\Visual Studio 2012\Projects\KINECT_BLOG\SkeletalTracking\SkeletalTracking.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\SkeletalTracking.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SkeletalTracking.cpp
@@ -11,4 +11,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.91
+Time Elapsed 00:00:04.81

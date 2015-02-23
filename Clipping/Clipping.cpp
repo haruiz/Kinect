@@ -8,7 +8,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	cv::setUseOptimized( true );
 
-	// Kinectのインスタンス生成、初期化
+
 	INuiSensor* pSensor;
 	HRESULT hResult = S_OK;
 	hResult = NuiCreateSensorByIndex( 0, &pSensor );
@@ -23,7 +23,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1;
 	}
 
-	// Colorストリーム
+	
 	HANDLE hColorEvent = INVALID_HANDLE_VALUE;
 	HANDLE hColorHandle = INVALID_HANDLE_VALUE;
 	hColorEvent = CreateEvent( nullptr, true, false, nullptr );
@@ -33,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		return -1;
 	}
 
-	// Depth&Playerストリーム
+
 	HANDLE hDepthPlayerEvent = INVALID_HANDLE_VALUE;
 	HANDLE hDepthPlayerHandle = INVALID_HANDLE_VALUE;
 	hDepthPlayerEvent = CreateEvent( nullptr, true, false, nullptr );
@@ -48,19 +48,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	cv::namedWindow( "Mask" );
 	cv::namedWindow( "Clip" );
 
-	// トラックバーの生成
+	
 	int iterationErode = 2;
 	int iterationDilate = 2;
 	cv::createTrackbar( "erode", "Mask", &iterationErode, 10 );
 	cv::createTrackbar( "dilate", "Mask", &iterationDilate, 10 );
 
 	while( 1 ){
-		// フレームの更新待ち
+	
 		ResetEvent( hColorEvent );
 		ResetEvent( hDepthPlayerEvent );
 		WaitForMultipleObjects( ARRAYSIZE( hEvents ), hEvents, true, INFINITE );
 
-		// Colorカメラからフレームを取得
+		
 		NUI_IMAGE_FRAME pColorImageFrame = { 0 };
 		hResult = pSensor->NuiImageStreamGetNextFrame( hColorHandle, 0, &pColorImageFrame );
 		if( FAILED( hResult ) ){
@@ -68,7 +68,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			return -1;
 		}
 
-		// Depthセンサーからフレームを取得
+	
 		NUI_IMAGE_FRAME pDepthPlayerImageFrame = { 0 };
 		hResult = pSensor->NuiImageStreamGetNextFrame( hDepthPlayerHandle, 0, &pDepthPlayerImageFrame );
 		if( FAILED( hResult ) ){
@@ -76,17 +76,17 @@ int _tmain(int argc, _TCHAR* argv[])
 			return -1;
 		}
 
-		// Color画像データの取得
+	
 		INuiFrameTexture* pColorFrameTexture = pColorImageFrame.pFrameTexture;
 		NUI_LOCKED_RECT sColorLockedRect;
 		pColorFrameTexture->LockRect( 0, &sColorLockedRect, nullptr, 0 );
 
-		// Depthデータの取得
+		
 		INuiFrameTexture* pDepthPlayerFrameTexture = pDepthPlayerImageFrame.pFrameTexture;
 		NUI_LOCKED_RECT sDepthPlayerLockedRect;
 		pDepthPlayerFrameTexture->LockRect( 0, &sDepthPlayerLockedRect, nullptr, 0 );
 
-		// 画像の取得
+		
 		cv::Mat colorMat( 480, 640, CV_8UC4, reinterpret_cast<uchar*>( sColorLockedRect.pBits ) );
 		LONG registX = 0;
 		LONG registY = 0;
@@ -104,7 +104,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 
-		// 処理
+		
 		// Mathematical Morphology - opening
 		cv::erode( maskMat, maskMat, cv::Mat(), cv::Point( -1, -1 ), iterationErode );
 		cv::dilate( maskMat, maskMat, cv::Mat(), cv::Point( -1, -1 ), iterationDilate );
@@ -119,19 +119,19 @@ int _tmain(int argc, _TCHAR* argv[])
 		cv::imshow( "Mask", maskMat );
 		cv::imshow( "Clip", clipMat );
 
-		// フレームの解放
+	
 		pColorFrameTexture->UnlockRect( 0 );
 		pDepthPlayerFrameTexture->UnlockRect( 0 );
 		pSensor->NuiImageStreamReleaseFrame( hColorHandle, &pColorImageFrame );
 		pSensor->NuiImageStreamReleaseFrame( hDepthPlayerHandle, &pDepthPlayerImageFrame );
 
-		// ループの終了判定(Escキー)
+	
 		if( cv::waitKey( 30 ) == VK_ESCAPE ){
 			break;
 		}
 	}
 
-	// Kinectの終了処理
+
 	pSensor->NuiShutdown();
 	CloseHandle( hColorEvent );
 	CloseHandle( hDepthPlayerEvent );
