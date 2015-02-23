@@ -5,6 +5,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ColorC++", "ColorC++\ColorC
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepthC++", "DepthC++\DepthC++.vcxproj", "{62AEF143-2EF6-4B96-9EF4-E8146C404B63}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SkeletalTracking", "SkeletalTracking\SkeletalTracking.vcxproj", "{25E0CFDD-2910-428F-A93B-459269D313E2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Clipping", "Clipping\Clipping.vcxproj", "{D54919E5-EAD1-4B6B-BD20-5B247E18DCA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +23,14 @@ Global
 		{62AEF143-2EF6-4B96-9EF4-E8146C404B63}.Debug|Win32.Build.0 = Debug|Win32
 		{62AEF143-2EF6-4B96-9EF4-E8146C404B63}.Release|Win32.ActiveCfg = Release|Win32
 		{62AEF143-2EF6-4B96-9EF4-E8146C404B63}.Release|Win32.Build.0 = Release|Win32
+		{25E0CFDD-2910-428F-A93B-459269D313E2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{25E0CFDD-2910-428F-A93B-459269D313E2}.Debug|Win32.Build.0 = Debug|Win32
+		{25E0CFDD-2910-428F-A93B-459269D313E2}.Release|Win32.ActiveCfg = Release|Win32
+		{25E0CFDD-2910-428F-A93B-459269D313E2}.Release|Win32.Build.0 = Release|Win32
+		{D54919E5-EAD1-4B6B-BD20-5B247E18DCA1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D54919E5-EAD1-4B6B-BD20-5B247E18DCA1}.Debug|Win32.Build.0 = Debug|Win32
+		{D54919E5-EAD1-4B6B-BD20-5B247E18DCA1}.Release|Win32.ActiveCfg = Release|Win32
+		{D54919E5-EAD1-4B6B-BD20-5B247E18DCA1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
